@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private int speed = 5;
-    private Rigidbody rb;
-
+    private int speed = 10;
+    private Rigidbody _rb;
+    private int rotSpeed = 30;
     void Start()
     {
         //getting the component rigidbody from the GO
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
  
@@ -18,13 +17,15 @@ public class PlayerMove : MonoBehaviour
     {
 
         //defining the input keys for the vertical and horizontal movements
-        float HorizInput = Input.GetAxisRaw("Horizontal") * speed;
-        float VerticInput = Input.GetAxisRaw("Vertical") * speed;
+        float horizInput = Input.GetAxisRaw("Horizontal") * speed;
+        float verticInput = Input.GetAxisRaw("Vertical") * speed;
        
         //apply the input defined ^ into vector 3 format
-        Vector3 movement = new Vector3(HorizInput, 0, VerticInput);
+        Vector3 movement = new Vector3(horizInput, 0, verticInput);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * rotSpeed , 0);
 
         //applying the input to the GO's component (rigidbody) ((called in start))
-        rb.velocity = movement;
+        _rb.velocity = movement;
+        movement.Normalize();
     }
 }
