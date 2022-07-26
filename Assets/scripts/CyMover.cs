@@ -38,7 +38,7 @@ public class CyMover : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, _targetAngel, 0f) * Vector3.forward;
             
             _controller.Move(moveDirection.normalized * _speed * Time.deltaTime );
-          //  Debug.Log($"Move Vector: {_direction} -- Transformed Vector: {final_di}");
+          
 
         }
         
