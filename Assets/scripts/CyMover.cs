@@ -13,10 +13,7 @@ public class CyMover : MonoBehaviour
     //ref for our cam so we can use it to change where our GO's forward is (the way the camera is facing)
     public Transform cam;
 
-    void Start()
-    {
-
-    }
+  
 
     void Update()
     {
@@ -38,39 +35,27 @@ public class CyMover : MonoBehaviour
             Vector3 moveDirection = Quaternion.Euler(0f, _targetAngel, 0f) * Vector3.forward;
 
             _controller.Move(moveDirection.normalized * _speed * Time.deltaTime);
-
-
-
-
-
         }
 
     }
 
-    //creating a list to store the amount of coins collected so we can use the amount to open the door later
-
     [SerializeField] 
-    public int coinAmount = 0;
-    [SerializeField]
-    private GameObject myCoin;
-    // void OnTriggerEnter ( Collider myCoin )
-    // {
-    //    
+    public int coinAmount ;    //creating a var to store the amount of coins collected so we can use the amount to open the door later
 
+    [SerializeField] //to attach the GO in the script showed on the inspector
+    private GameObject myCoin; //calling GO to use in destroy() 
     private void OnTriggerEnter(Collider myCoin)
     {
-
-
         if (myCoin.gameObject.CompareTag("coin"))
         {
-            _speed += 1;
-            coinAmount += 1; // saves the coin amount in the list
+            _speed += 1; //the same speed var used in the movement code
+            coinAmount += 1; // saves the coin amount in the var
             Destroy(myCoin.gameObject);
         }
     }
 
     [SerializeField] private GameObject exit;
-    private void OnControllerColliderHit (ControllerColliderHit exit)
+    private void OnControllerColliderHit (ControllerColliderHit exit) //using this instead of oncolliderenter becz th game attached to this script has a char controller and wont be affected by it
     {
         if (coinAmount == 3 && exit.gameObject.CompareTag("exit"))
         {
