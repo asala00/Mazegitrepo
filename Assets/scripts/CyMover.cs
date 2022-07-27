@@ -41,5 +41,17 @@ public class CyMover : MonoBehaviour
         
     }
     
+    //creating a list to store the amount of coins collected so we can use the amount to open the door later
+    [SerializeField] private int coinAmount = 0;
+    private GameObject myCoin;
+    void OnCollisionEnter( Collision myCoin )
+    {
+        if (myCoin.gameObject.CompareTag("coin"))
+        {
+            coinAmount += 1; // saves the coin amount in the list
+            Destroy(myCoin.gameObject);
+        }
+    }
+    
 }
 
