@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class CyMover : MonoBehaviour
@@ -8,14 +9,12 @@ public class CyMover : MonoBehaviour
     public float _speed = 5f;
     //ref for our cam so we can use it to change where our GO's forward is (the way the camera is facing)
     public Transform cam;
-   
     
     void Start()
     {
        
     }
-
-
+    
     void Update()
     {
         float horizInput = Input.GetAxisRaw("Horizontal") * _speed;
@@ -32,8 +31,6 @@ public class CyMover : MonoBehaviour
             float _targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg+cam.eulerAngles.y;
             //setting our rotation according to the previous line of code
             transform.rotation = Quaternion.Euler(0f, _targetAngel, 0f);
-
-            
             //changes the GO dierction istead of just rotation
             Vector3 moveDirection = Quaternion.Euler(0f, _targetAngel, 0f) * Vector3.forward;
             
@@ -42,10 +39,6 @@ public class CyMover : MonoBehaviour
 
         }
         
-       
-        
-       
-
     }
     
 }
