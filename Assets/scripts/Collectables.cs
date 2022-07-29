@@ -6,12 +6,6 @@ public class Collectables : MonoBehaviour
 {
     private float coinAngel = 0.9f;
 
-    void Start()
-    {
-
-    }
-
-    
     void Update()
     {
         //to rotate the coin using its transform
