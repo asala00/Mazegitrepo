@@ -31,9 +31,9 @@ public class PlayerMovementwFPS : MonoBehaviour
     {
         if (myCoin.gameObject.CompareTag("coin"))
         {
-            speed += 3; //the same speed var used in the movement code
+            speed += 2; //the same speed var used in the movement code
             coinAmount += 1; // saves the coin amount in the var
-            MouseCam.MouseSensitivity += 2; //called the var from another script (had to set it as static there)
+            MouseCam.MouseSensitivity += 3; //called the var from another script (had to set it as static there)
             Destroy(myCoin.gameObject);
         }
     }
