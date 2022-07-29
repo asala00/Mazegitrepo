@@ -7,7 +7,7 @@ using UnityEngine;
 public class MouseCam : MonoBehaviour
 {
     //to control the speed the mouse looks around with
-    public static float MouseSensitivity = 100f;//set as static to be used in another script
+    public static float MouseSensitivity = 150f;//set as static to be used in another script
     //creating a var to represent the player GO so we can use it for moving left and right
     public Transform OurPlayer;
     // creating a var for the rotation around the x axis so we can use it to look up and down with the cam
