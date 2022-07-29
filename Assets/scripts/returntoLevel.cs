@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EndGoal : MonoBehaviour
+
+public class returntoLevel : MonoBehaviour
 {
     private void OnTriggerEnter(Collider player)
     {
         if (player.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
     }
 }
