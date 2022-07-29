@@ -3,18 +3,16 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// this whole script for the exception of the trigger and collision deals with moving the player with the use of cinemachine
 public class CyMover : MonoBehaviour
 {
 
     public CharacterController _controller;
 
-    [SerializeField] public float _speed = 5.0f;
-
+    [SerializeField] public float _speed;
     //ref for our cam so we can use it to change where our GO's forward is (the way the camera is facing)
     public Transform cam;
-
-  
-
+    
     void Update()
     {
         float horizInput = Input.GetAxisRaw("Horizontal") * _speed;
@@ -31,7 +29,7 @@ public class CyMover : MonoBehaviour
             float _targetAngel = Mathf.Atan2(_direction.x, _direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             //setting our rotation according to the previous line of code
             transform.rotation = Quaternion.Euler(0f, _targetAngel, 0f);
-            //changes the GO dierction istead of just rotation
+            //changes the GO dierction instead of just rotation
             Vector3 moveDirection = Quaternion.Euler(0f, _targetAngel, 0f) * Vector3.forward;
 
             _controller.Move(moveDirection.normalized * _speed * Time.deltaTime);
@@ -60,6 +58,10 @@ public class CyMover : MonoBehaviour
         if (coinAmount == 3 && exit.gameObject.CompareTag("exit"))
         {
             Destroy(exit.gameObject);
+        }
+        else if (coinAmount < 3 && exit.gameObject.CompareTag("exit"))
+        {
+            Debug.Log("collect all three speedboosts to open");
         }
     }
 }
